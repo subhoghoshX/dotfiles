@@ -52,3 +52,5 @@ require('lspconfig')['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
+require'lspconfig'.emmet_ls.setup{}
+require'lspconfig'.tailwindcss.setup{}

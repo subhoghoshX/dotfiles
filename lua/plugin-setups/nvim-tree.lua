@@ -21,3 +21,15 @@ require('nvim-tree').setup({
   }
 })
 
+-- From: https://github.com/nvim-tree/nvim-tree.lua/discussions/1517
+vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPost"}, {
+  callback = function(args)
+    if vim.fn.expand "%:p" ~= "" then
+      vim.api.nvim_del_autocmd(args.id)
+      vim.cmd "noautocmd NvimTreeOpen"
+      vim.cmd "noautocmd wincmd p"
+      vim.cmd("e") -- Reload the opened file bcz syntax highlighting & other stuff doesn't work
+    end
+  end,
+})
+
