@@ -10,3 +10,5 @@ vim.opt.laststatus = 3 -- One global statusline
 vim.api.nvim_set_hl(0, 'WinSeparator', { guibg=None }) -- Remove thick border bg b/w splits
 
 vim.g.mapleader = ' '
+
+vim.opt.timeout = false -- Make leader wait
