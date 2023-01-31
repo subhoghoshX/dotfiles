@@ -12,3 +12,8 @@ vim.api.nvim_set_hl(0, 'WinSeparator', { guibg=None }) -- Remove thick border bg
 vim.g.mapleader = ' '
 
 vim.opt.timeout = false -- Make leader wait
+
+vim.keymap.set('n', '<leader>dr', ':drop **/*')
+vim.opt.wildignore = vim.opt.wildignore + '**/node_modules/**'
+
+vim.opt.signcolumn = 'yes' -- Always keep the space for lsp signs

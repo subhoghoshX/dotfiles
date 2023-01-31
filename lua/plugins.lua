@@ -30,4 +30,13 @@ return require('packer').startup(function(use)
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+
+  use 'nanozuki/tabby.nvim'
+
+  use 'NvChad/nvim-colorizer.lua'
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+  }
 end)
