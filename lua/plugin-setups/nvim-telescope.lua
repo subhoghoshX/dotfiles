@@ -17,3 +17,8 @@ require('telescope').setup {
 }
 
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+
+-- ripgrep binary needs to be installed for this to work
+vim.keymap.set('n', '<leader>ps', function()
+  builtin.grep_string({ search = vim.fn.input("Grep > ") })
+end)
