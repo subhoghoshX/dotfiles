@@ -1,0 +1,6 @@
+require('plugin-setups/nvim-lspconfig')
+require('plugin-setups/autocompletion')
+require('plugin-setups/nvim-treesitter')
+require('plugin-setups/vscode')
+require('plugin-setups/gitsigns')
+require('plugin-setups/nvim-telescope')
