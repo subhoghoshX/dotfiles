@@ -17,7 +17,7 @@ require("lazy").setup({
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
   'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
   'L3MON4D3/LuaSnip', -- Snippets plugin
-  {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'},
+  {'nvim-treesitter/nvim-treesitter', build = 'TSUpdate'},
   'Mofiqul/vscode.nvim',
   'lewis6991/gitsigns.nvim',
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }}
