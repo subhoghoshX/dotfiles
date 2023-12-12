@@ -20,7 +20,8 @@ require("lazy").setup({
   {'nvim-treesitter/nvim-treesitter', build = 'TSUpdate'},
   'Mofiqul/vscode.nvim',
   'lewis6991/gitsigns.nvim',
-  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }}
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
+  { 'numToStr/Comment.nvim', lazy = false }
 })
 
 -- Load plugin setups
