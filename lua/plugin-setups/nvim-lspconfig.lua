@@ -1,35 +1,25 @@
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+local lspconfig = require('lspconfig')
 
-local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+lspconfig.tsserver.setup({})
+lspconfig.emmet_language_server.setup({})
+lspconfig.eslint.setup({})
+lspconfig.tailwindcss.setup({})
+lspconfig.astro.setup({})
 
-  -- Mappings
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-end
+-- Set the global shortcuts
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 
-require('lspconfig')['tsserver'].setup{
-  on_attach = on_attach
-}
-require'lspconfig'.emmet_ls.setup{
-  on_attach = on_attach
-}
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}), -- I don't understand what this does
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
 
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-require'lspconfig'.cssls.setup{
-  capabilities = capabilities,
-  on_attach = on_attach
-}
-
-require'lspconfig'.tailwindcss.setup{
-  on_attach = on_attach
-}
-require'lspconfig'.luau_lsp.setup{
-  on_attach = on_attach
-}
-require'lspconfig'.eslint.setup{
-  on_attach = on_attach
-}
+    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts) -- ?
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts) -- ?
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts) -- ?
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+  end
+})
