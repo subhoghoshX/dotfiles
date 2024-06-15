@@ -21,7 +21,8 @@ require("lazy").setup({
   'Mofiqul/vscode.nvim',
   'lewis6991/gitsigns.nvim',
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
-  { 'numToStr/Comment.nvim', lazy = false }
+  { 'numToStr/Comment.nvim', lazy = false },
+  'nvimtools/none-ls.nvim',
 })
 
 -- Load plugin setups
