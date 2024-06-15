@@ -23,6 +23,7 @@ require("lazy").setup({
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   { 'numToStr/Comment.nvim', lazy = false },
   'nvimtools/none-ls.nvim',
+  'github/copilot.vim',
 })
 
 -- Load plugin setups
