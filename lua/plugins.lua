@@ -1,55 +1,30 @@
-vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+require("lazy").setup({
+  'neovim/nvim-lspconfig',
+  'hrsh7th/nvim-cmp', -- Autocompletion plugin
+  'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+  'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+  'L3MON4D3/LuaSnip', -- Snippets plugin
+  {'nvim-treesitter/nvim-treesitter', build = 'TSUpdate'},
+  'Mofiqul/vscode.nvim',
+  'lewis6991/gitsigns.nvim',
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
+  { 'numToStr/Comment.nvim', lazy = false },
+  'nvimtools/none-ls.nvim',
+  'github/copilot.vim',
+})
 
-  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
-
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = {'nvim-lua/plenary.nvim'}
-  }
-
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
-  }
-
-  use 'Mofiqul/vscode.nvim'
-
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-
-  use 'nanozuki/tabby.nvim'
-
-  use 'NvChad/nvim-colorizer.lua'
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
-  }
-
-  use {
-    'nvim-telescope/telescope.nvim',
-  -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  use {
-      'numToStr/Comment.nvim',
-      config = function()
-          require('Comment').setup()
-      end
-  }
-end)
+-- Load plugin setups
+require('plugin-setups')
