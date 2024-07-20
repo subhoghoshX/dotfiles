@@ -24,6 +24,7 @@ require("lazy").setup({
   { 'numToStr/Comment.nvim', lazy = false },
   'nvimtools/none-ls.nvim',
   'github/copilot.vim',
+  'CopilotC-Nvim/CopilotChat.nvim',
 })
 
 -- Load plugin setups
