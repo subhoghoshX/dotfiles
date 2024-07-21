@@ -5,6 +5,13 @@ lspconfig.emmet_language_server.setup({})
 lspconfig.eslint.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.astro.setup({})
+lspconfig.biome.setup({})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    vim.lsp.buf.format()
+  end
+})
 
 -- Set the global shortcuts
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)

@@ -22,7 +22,6 @@ require("lazy").setup({
   'lewis6991/gitsigns.nvim',
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   { 'numToStr/Comment.nvim', lazy = false },
-  'nvimtools/none-ls.nvim',
   'github/copilot.vim',
   'CopilotC-Nvim/CopilotChat.nvim',
 })
