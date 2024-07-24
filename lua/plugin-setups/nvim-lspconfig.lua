@@ -6,6 +6,7 @@ lspconfig.eslint.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.astro.setup({})
 lspconfig.biome.setup({})
+lspconfig.jsonls.setup{}
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
