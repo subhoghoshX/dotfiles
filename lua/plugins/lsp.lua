@@ -18,6 +18,7 @@ return {
 
 	  if client.supports_method(methods.textDocument_completion) then
 	    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+            vim.opt.completeopt = 'menu,preview,noselect'
 	  end
 	end
       })
