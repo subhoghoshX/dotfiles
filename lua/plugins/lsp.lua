@@ -4,6 +4,7 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
 
+      -- npm i -g typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server
       lspconfig.ts_ls.setup({})
       lspconfig.eslint.setup({})
       lspconfig.tailwindcss.setup({})
