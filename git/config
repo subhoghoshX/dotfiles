@@ -1,0 +1,5 @@
+[user]
+	email = contact.subhoghosh@gmail.com
+	name = Subho
+[core]
+	editor = nvim
