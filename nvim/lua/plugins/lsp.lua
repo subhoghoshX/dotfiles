@@ -16,7 +16,7 @@ return {
 	  local client = vim.lsp.get_client_by_id(args.data.client_id)
 	  local methods = vim.lsp.protocol.Methods
 
-	  if client.supports_method(methods.textDocument_completion) then
+	  if client:supports_method(methods.textDocument_completion) then
 	    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
             vim.opt.completeopt = 'menu,preview,noselect'
 	  end
