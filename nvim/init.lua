@@ -35,7 +35,7 @@ vim.cmd.colorscheme('vscode')
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'all',
+  ensure_installed = {'astro', 'bash', 'c', 'css', 'html', 'javascript', 'json', 'json5', 'jsonc', 'lua', 'markdown', 'sql', 'todotxt', 'tsx', 'typescript', 'zig'},
   auto_install = false,
   highlight = {
     enable = true,
