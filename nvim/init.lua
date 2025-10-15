@@ -5,7 +5,7 @@ vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = 'yes'
 
--- plugins
+-- plugins and their setups
 vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
@@ -14,8 +14,6 @@ vim.pack.add({
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/neovim/nvim-lspconfig',
 })
-
--- plugin setups
 
 -- gitsigns
 require('gitsigns').setup()
@@ -52,15 +50,11 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- lsp
-local lspconfig = require('lspconfig')
+-- lsp: npm i -g typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('eslint')
+vim.lsp.enable('tailwindcss')
 
--- npm i -g typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server
-lspconfig.ts_ls.setup({})
-lspconfig.eslint.setup({})
-lspconfig.tailwindcss.setup({})
-
--- autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
@@ -68,7 +62,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local methods = vim.lsp.protocol.Methods
 
     if client:supports_method(methods.textDocument_completion) then
-      vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+      vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true }) -- autocomplete
       vim.opt.completeopt = 'menu,preview,noselect'
     end
   end
