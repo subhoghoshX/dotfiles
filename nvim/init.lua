@@ -8,8 +8,7 @@ vim.opt.signcolumn = 'yes'
 -- plugins and their setups
 vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim',
-  'https://github.com/nvim-telescope/telescope.nvim',
-  'https://github.com/nvim-lua/plenary.nvim', -- dep of telescope
+  'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/Mofiqul/vscode.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/neovim/nvim-lspconfig',
@@ -18,14 +17,15 @@ vim.pack.add({
 -- gitsigns
 require('gitsigns').setup()
 
--- telescope
-local builtin = require('telescope.builtin')
-
-vim.keymap.set('n', '<C-p>', builtin.find_files)
-
-vim.keymap.set('n', '<leader>gr', function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
+-- fzf lua
+local FzfLua = require('fzf-lua')
+vim.keymap.set('n', '<leader>f', function() FzfLua.files() end)
+vim.keymap.set('n', '<leader>b', function() FzfLua.buffers() end)
+vim.keymap.set('n', '<leader>q', function() FzfLua.quickfix() end)
+vim.keymap.set('n', '<leader>gr', function() FzfLua.grep() end)
+vim.keymap.set('n', '<leader>gc', function() FzfLua.git_commits() end)
+vim.keymap.set('n', '<leader>gb', function() FzfLua.git_branches() end)
+vim.keymap.set('n', '<leader>~', function() FzfLua.files({ cwd = '~' }) end)
 
 -- vscode theme
 local vscode = require('vscode')
