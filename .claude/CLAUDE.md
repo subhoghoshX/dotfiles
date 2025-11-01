@@ -1,0 +1,3 @@
+- when creating a git commit or PR don't add yourself as a contributor and don't add any "Generated with" message
+- always break the git commit message and description after 72 characters
+- when createing a PR never add any description
