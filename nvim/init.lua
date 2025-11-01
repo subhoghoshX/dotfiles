@@ -8,7 +8,7 @@ vim.opt.signcolumn = 'yes'
 -- plugins and their setups
 vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim',
-  'https://github.com/ibhagwan/fzf-lua',
+  'https://github.com/folke/snacks.nvim',
   'https://github.com/Mofiqul/vscode.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/neovim/nvim-lspconfig',
@@ -17,15 +17,13 @@ vim.pack.add({
 -- gitsigns
 require('gitsigns').setup()
 
--- fzf lua
-local FzfLua = require('fzf-lua')
-vim.keymap.set('n', '<leader>f', function() FzfLua.files() end)
-vim.keymap.set('n', '<leader>b', function() FzfLua.buffers() end)
-vim.keymap.set('n', '<leader>q', function() FzfLua.quickfix() end)
-vim.keymap.set('n', '<leader>gr', function() FzfLua.grep() end)
-vim.keymap.set('n', '<leader>gc', function() FzfLua.git_commits() end)
-vim.keymap.set('n', '<leader>gb', function() FzfLua.git_branches() end)
-vim.keymap.set('n', '<leader>~', function() FzfLua.files({ cwd = '~' }) end)
+-- snacks picker
+require('snacks').setup()
+vim.keymap.set('n', '<leader>a', function() Snacks.picker() end)
+vim.keymap.set('n', '<leader>f', function() Snacks.picker.files({ hidden = true }) end)
+vim.keymap.set('n', '<leader>b', function() Snacks.picker.buffers() end)
+vim.keymap.set('n', '<leader>gr', function() Snacks.picker.grep() end)
+vim.keymap.set('n', '<leader>~', function() Snacks.picker.files({ cwd = '~', hidden = true }) end)
 
 -- vscode theme
 local vscode = require('vscode')
