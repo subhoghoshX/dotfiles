@@ -1,5 +1,8 @@
 *
-!*/
-!nvim/**
-!ghostty/**
-!git/**
+!.config/
+!.config/nvim/
+!.config/nvim/*
+!.config/ghostty/
+!.config/ghostty/*
+!.config/git/
+!.config/git/*
