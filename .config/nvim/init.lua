@@ -15,7 +15,12 @@ vim.pack.add({
 })
 
 -- gitsigns
-require('gitsigns').setup()
+require('gitsigns').setup({
+  on_attach = function()
+    local gitsigns = require('gitsigns')
+    vim.keymap.set('n', '<leader>d', gitsigns.preview_hunk)
+  end
+})
 
 -- snacks picker
 require('snacks').setup()
