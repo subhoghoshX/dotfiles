@@ -1,2 +1,3 @@
 theme = Dark Modern
 window-padding-x = 0
+bell-features = system,no-audio,attention,no-title,no-border
