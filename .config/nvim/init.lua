@@ -12,6 +12,7 @@ vim.pack.add({
   'https://github.com/Mofiqul/vscode.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/stevearc/conform.nvim',
 })
 
 -- gitsigns
@@ -29,34 +30,17 @@ vim.keymap.set('n', '<leader>f', function() Snacks.picker.files({ hidden = true 
 vim.keymap.set('n', '<leader>b', function() Snacks.picker.buffers() end)
 vim.keymap.set('n', '<leader>gr', function() Snacks.picker.grep() end)
 vim.keymap.set('n', '<leader>~', function() Snacks.picker.files({ cwd = '~', hidden = true }) end)
+vim.keymap.set('n', '<leader>e', function() Snacks.explorer() end)
 
 -- vscode theme
 local vscode = require('vscode')
 vim.cmd.colorscheme('vscode')
 
 -- treesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {'astro', 'bash', 'c', 'css', 'html', 'javascript', 'json', 'json5', 'jsonc', 'lua', 'markdown', 'sql', 'todotxt', 'tsx', 'typescript', 'zig'},
-  auto_install = false,
-  highlight = {
-    enable = true,
-
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-
-    additional_vim_regex_highlighting = false,
-  },
-}
+require('nvim-treesitter').install({'astro', 'bash', 'c', 'css', 'html', 'javascript', 'json', 'json5', 'lua', 'markdown', 'sql', 'todotxt', 'tsx', 'typescript', 'zig'})
 
 -- lsp: npm i -g typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('eslint')
-vim.lsp.enable('tailwindcss')
+vim.lsp.enable({'ts_ls', 'eslint', 'tailwindcss'})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -69,4 +53,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.opt.completeopt = 'menu,preview,noselect'
     end
   end
+})
+
+-- conform: npm install -g @fsouza/prettierd
+require("conform").setup({
+  formatters_by_ft = {
+    html = { "prettierd" },
+    css = { "prettierd" },
+    typescript = { "prettierd" },
+    typescriptreact = { "prettierd" },
+    json = { "prettierd" },
+    jsonc = { "prettierd" }, -- tsconfig.json is detected as jsonc. check with `:set ft?`
+    yaml = { "prettierd" },
+    markdown = { "prettierd" },
+  },
+  format_on_save = {},
 })
