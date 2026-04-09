@@ -3,7 +3,6 @@ vim.opt.wrap = false
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
-vim.opt.signcolumn = 'yes'
 
 -- plugins and their setups
 vim.pack.add({
@@ -17,6 +16,8 @@ vim.pack.add({
 
 -- gitsigns
 require('gitsigns').setup({
+  signcolumn = false,
+  linehl = true,
   on_attach = function()
     local gitsigns = require('gitsigns')
     vim.keymap.set('n', '<leader>d', gitsigns.preview_hunk)
