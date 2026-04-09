@@ -3,12 +3,12 @@ vim.opt.wrap = false
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
+vim.cmd.colorscheme('catppuccin')
 
 -- plugins and their setups
 vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/folke/snacks.nvim',
-  'https://github.com/Mofiqul/vscode.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/stevearc/conform.nvim',
@@ -32,10 +32,6 @@ vim.keymap.set('n', '<leader>b', function() Snacks.picker.buffers() end)
 vim.keymap.set('n', '<leader>gr', function() Snacks.picker.grep() end)
 vim.keymap.set('n', '<leader>~', function() Snacks.picker.files({ cwd = '~', hidden = true }) end)
 vim.keymap.set('n', '<leader>e', function() Snacks.explorer() end)
-
--- vscode theme
-local vscode = require('vscode')
-vim.cmd.colorscheme('vscode')
 
 -- treesitter
 require('nvim-treesitter').install({'astro', 'bash', 'c', 'css', 'html', 'javascript', 'json', 'json5', 'lua', 'markdown', 'sql', 'todotxt', 'tsx', 'typescript', 'zig'})
