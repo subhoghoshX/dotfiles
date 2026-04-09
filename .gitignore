@@ -1,12 +1,5 @@
 *
-!.config/
-!.config/nvim/
-!.config/nvim/*
-!.config/ghostty/
-!.config/ghostty/*
-!.config/git/
-!.config/git/*
-!.claude/
-!.claude/CLAUDE.md
-!.claude/commands/
-!.claude/commands/*
+!*/
+!nvim/init.lua
+!ghostty/config
+!git/config
